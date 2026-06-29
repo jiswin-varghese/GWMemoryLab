@@ -1,30 +1,38 @@
 """
-constants.py
-============
+====================================================
+GWMemoryLab : Physical Constants
+====================================================
 
-Physical constants used throughout GWMemoryLab.
+This module contains the physical constants used
+throughout GWMemoryLab.
 
 Units:
-    SI Units
+    SI
 
 References:
-    CODATA 2018 recommended values
+    CODATA 2018 Recommended Values
 """
 
-# Gravitational constant
-G = 6.67430e-11          # m^3 kg^-1 s^-2
+import math
 
-# Speed of light
-c = 2.99792458e8         # m s^-1
+# ==================================================
+# Fundamental Constants (SI)
+# ==================================================
 
-# Solar mass
-M_sun = 1.98847e30       # kg
+#: Speed of light in vacuum (m/s)
+C = 299792458.0
 
-# Parsec
-pc = 3.085677581491367e16    # m
+#: Gravitational constant (m^3 kg^-1 s^-2)
+G = 6.67430e-11
 
-# Megaparsec
-Mpc = 1.0e6 * pc
+#: Solar mass (kg)
+M_SUN = 1.98847e30
 
-# Pi
-pi = 3.141592653589793
+#: Parsec (m)
+PC = 3.085677581491367e16
+
+#: Megaparsec (m)
+MPC = 1.0e6 * PC
+
+#: Pi
+PI = math.pi

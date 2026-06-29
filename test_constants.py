@@ -1,11 +1,12 @@
 from src.gwmemory.constants import *
 
-print("Testing GWMemoryLab constants")
-print("--------------------------------")
+print("=" * 40)
+print("GWMemoryLab Constants Test")
+print("=" * 40)
 
-print("G =", G)
-print("c =", c)
-print("Solar Mass =", M_sun)
-print("Parsec =", pc)
-print("Megaparsec =", Mpc)
-print("pi =", pi)
+print(f"G      = {G:.10e}")
+print(f"c      = {C:.10e}")
+print(f"M_sun  = {M_SUN:.10e}")
+print(f"pc     = {PC:.10e}")
+print(f"Mpc    = {MPC:.10e}")
+print(f"pi     = {PI}")
