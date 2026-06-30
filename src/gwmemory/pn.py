@@ -98,3 +98,17 @@ class Inspiral:
           self.f0**(-8/3)
           - (8/3)*K*time
        )**(-3/8)
+    def analytical_frequency(self, time):
+        """
+        Analytical leading-order PN solution for the GW frequency.
+        """
+        K = (
+           (96/5) 
+           * PI**(8/3) 
+           * (G * self.chirp_mass / C**3)**(5/3)
+        )
+
+        return (
+          self.f0**(-8/3)
+         - (8/3) * K * time
+        )**(-3/8)
