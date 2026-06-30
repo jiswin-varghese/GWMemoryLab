@@ -1,6 +1,6 @@
 from src.gwmemory.binary import BinarySystem
 
-binary = BinarySystem(30, 30)
+binary = BinarySystem(36, 29)
 
 print("="*40)
 print("Binary Parameters")
