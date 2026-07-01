@@ -57,3 +57,17 @@ Mean error:
 
 - rk4_comparison.png
 - pn_validation.png
+- 
+## Validation Results
+
+Maximum error:
+2.039 × 10⁻¹¹ Hz
+
+Mean error:
+7.908 × 10⁻¹² Hz
+
+Conclusion:
+
+The RK4 numerical solution agrees with the analytical leading-order
+post-Newtonian solution to within machine precision for the chosen
+simulation parameters.

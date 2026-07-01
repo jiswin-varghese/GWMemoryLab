@@ -12,3 +12,13 @@ Date: 29 June 2026
 
 ### Next
 - Binary parameter module
+
+## Version 0.2
+
+### Completed
+- Implemented BinarySystem class
+- Verified equal-mass binary
+- Verified GW150914-like binary parameters
+
+### Next
+- Implement PN inspiral evolution
