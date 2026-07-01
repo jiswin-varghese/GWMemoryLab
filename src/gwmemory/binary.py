@@ -16,7 +16,7 @@ Outputs:
 
 from dataclasses import dataclass
 
-
+from .constants import G, C, PI, M_SUN
 @dataclass
 class BinarySystem:
     """
@@ -28,16 +28,33 @@ class BinarySystem:
 
     @property
     def total_mass(self):
-        return self.m1 + self.m2
+        """
+        Total mass in kilograms.
+        """
+        return (self.m1 + self.m2) * M_SUN
 
     @property
     def reduced_mass(self):
-        return (self.m1 * self.m2) / self.total_mass
+        return ((self.m1 * M_SUN) * (self.m2 * M_SUN)) / self.total_mass
 
     @property
     def eta(self):
-        return (self.m1 * self.m2) / (self.total_mass ** 2)
+       return ((self.m1 * M_SUN) * (self.m2 * M_SUN)) / (self.total_mass**2)
 
     @property
     def chirp_mass(self):
-        return ((self.m1 * self.m2) ** (3/5)) / (self.total_mass ** (1/5))
+      m1 = self.m1 * M_SUN
+      m2 = self.m2 * M_SUN
+      M = m1 + m2
+
+      return (m1 * m2)**(3/5) / M**(1/5)
+      
+    def isco_frequency(self):
+        """
+          Approximate gravitational-wave frequency at the ISCO.
+        """
+
+        return (
+            C**3 /
+            (PI * (6**1.5) * G * self.total_mass)
+        )
