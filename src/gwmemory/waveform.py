@@ -30,3 +30,19 @@ class Waveform:
             )
 
         return phi
+        
+        
+    def amplitude(self):
+
+          amp = (self.frequency / self.frequency[0])**(2/3)
+
+          return amp / np.max(amp)
+          
+          
+    def strain(self):
+
+          amp = self.amplitude()
+
+          phi = self.phase()
+
+          return amp * np.cos(phi)
