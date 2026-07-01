@@ -8,7 +8,9 @@ binary = BinarySystem(30,30)
 
 solver = Inspiral(binary)
 
-t,f = solver.evolve_rk4(0.2)
+#t,f = solver.evolve_rk4(0.2)
+t, f = solver.evolve_to_merger()
+
 
 wave = Waveform(t,f)
 

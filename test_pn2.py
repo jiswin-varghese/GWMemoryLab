@@ -9,7 +9,7 @@ solver = Inspiral(binary, dt=0.01)
 
 
 t1, f1 = solver.evolve(0.2)
-t2, f2 = solver.evolve_rk4(0.2)
+t, f = solver.evolve_to_merger()
 f_exact = solver.analytical_frequency(t2)
 f_exact = solver.analytical_frequency(t2)
 

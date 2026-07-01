@@ -17,12 +17,7 @@ class Inspiral:
         self.binary = binary
         self.f0 = f0
         self.dt = dt
-    @property
-    def chirp_mass(self):
-        """
-        Chirp mass in kilograms.
-        """
-        return self.binary.chirp_mass * M_SUN
+
         
     def dfdt(self, f):
         """
@@ -32,7 +27,7 @@ class Inspiral:
         coefficient = (
             (96/5)
             * PI**(8/3)
-            * (G * self.chirp_mass / C**3)**(5/3)
+            * (G * self.binary.chirp_mass_si / C**3)**(5/3)
         )
 
         return coefficient * f**(11/3)
@@ -86,18 +81,33 @@ class Inspiral:
 
         return time, frequency
         
-    def analytical_frequency(self, time):
+    def evolve_to_merger(self):
+          """
+          Evolve the inspiral until the ISCO frequency is reached.
+          """
 
-       K = (
-         (96/5)
-         * PI**(8/3)
-         * (G*self.chirp_mass/C**3)**(5/3)
-       )
+          time = [0.0]
+          frequency = [self.f0]
 
-       return (
-          self.f0**(-8/3)
-          - (8/3)*K*time
-       )**(-3/8)
+          while frequency[-1] < self.binary.isco_frequency:
+
+                t = time[-1]
+                f = frequency[-1]
+
+                # RK4 integration
+                k1 = self.dfdt(f)
+                k2 = self.dfdt(f + 0.5 * self.dt * k1)
+                k3 = self.dfdt(f + 0.5 * self.dt * k2)
+                k4 = self.dfdt(f + self.dt * k3)
+
+                f_new = f + (self.dt / 6.0) * (k1 + 2*k2 + 2*k3 + k4)
+
+                time.append(t + self.dt)
+                frequency.append(f_new)
+
+          return np.array(time), np.array(frequency)
+        
+    
     def analytical_frequency(self, time):
         """
         Analytical leading-order PN solution for the GW frequency.
@@ -105,7 +115,7 @@ class Inspiral:
         K = (
            (96/5) 
            * PI**(8/3) 
-           * (G * self.chirp_mass / C**3)**(5/3)
+           * (G * self.binary.chirp_mass_si / C**3)**(5/3)
         )
 
         return (
